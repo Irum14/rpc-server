@@ -1,4 +1,3 @@
-# server.py
 from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -14,6 +13,10 @@ def _normalize_result(value):
         return int(value)
     return value
 
+@app.get("/")
+async def root():
+    return {"message": "RPC Server is running"}
+
 @app.post("/add")
 async def add(op: Operands):
     result = op.x + op.y
@@ -23,8 +26,8 @@ async def add(op: Operands):
 async def multiply(op: Operands):
     result = op.x * op.y
     return {"result": _normalize_result(result)}
+
 import uvicorn
 
 if __name__ == "__main__":
     uvicorn.run("server:app", host="0.0.0.0", port=8080)
-
