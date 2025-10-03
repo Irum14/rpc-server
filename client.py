@@ -1,6 +1,6 @@
 import requests
 
-SERVER_URL = "http://127.0.0.1:8080"
+SERVER_URL = "https://rpc-server-1.onrender.com"
 
 def call_rpc(endpoint, data):
     try:
